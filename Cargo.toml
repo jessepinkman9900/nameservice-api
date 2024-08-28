@@ -1,0 +1,14 @@
+[package]
+name = "rust-api"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.72.0"
+
+[dependencies]
+actix-cors = "0.7.0"
+actix-web = "4.9.0"
+chrono = { version = "0.4.38", features = ["serde"] }
+env_logger = "0.11.5"
+log = "0.4.22"
+serde = { version = "1.0.209", features = ["derive"] }
+uuid = { version = "1.10.0", features = ["v4"] }
