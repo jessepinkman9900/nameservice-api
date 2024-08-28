@@ -1,5 +1,6 @@
 mod routes;
 mod models;
+mod connectors;
 
 use actix_web::middleware::Logger;
 use actix_web::{App, HttpServer};
@@ -19,6 +20,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(Logger::default())
             // routes
             .service(routes::ping_handler)
+            .service(routes::nameservice_supported_handler)
     })
     .bind(("127.0.0.1", 8080))?
     .run()
