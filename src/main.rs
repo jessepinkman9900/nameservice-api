@@ -1,7 +1,8 @@
-mod routes;
-mod models;
 mod connectors;
+mod models;
+mod routes;
 
+use crate::routes::nameservice_name_avaiable_handler;
 use actix_web::middleware::Logger;
 use actix_web::{App, HttpServer};
 
@@ -21,6 +22,7 @@ async fn main() -> std::io::Result<()> {
             // routes
             .service(routes::ping_handler)
             .service(routes::nameservice_supported_handler)
+            .service(nameservice_name_avaiable_handler)
     })
     .bind(("127.0.0.1", 8080))?
     .run()
