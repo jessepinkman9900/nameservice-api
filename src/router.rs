@@ -5,7 +5,7 @@ use base::BaseNameService;
 
 pub trait Router<Req, Res> {
     async fn route_operation(_operation: Operation, _chain: Chain, _req: Req) -> Res;
-    fn get_connector(_chain: Chain) -> impl Connector<Req, Res>;
+    fn get_connector(_chain: Chain) -> Result<impl Connector<Req, Res>, Error>;
 }
 
 #[derive(Clone)]
@@ -22,9 +22,14 @@ impl Router<NameAvailableRequest, NameAvailableResponse> for NameAvailableRouter
         response
     }
 
-    fn get_connector(_chain: Chain) -> impl Connector<NameAvailableRequest, NameAvailableResponse> {
-        BaseNameService {
-            base_url: format!("{}", "https://api.basename.app/v1"),
+    fn get_connector(
+        _chain: Chain,
+    ) -> impl Result<Connector<NameAvailableRequest, NameAvailableResponse>, Error> {
+        match _chain {
+            Chain::Base => Ok(BaseNameService {
+                base_url: format!("{}", "https://api.basename.app/v1"),
+            }),
+            _ => Err("unable to "),
         }
     }
 }
