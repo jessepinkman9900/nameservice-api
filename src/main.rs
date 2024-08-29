@@ -1,3 +1,4 @@
+mod configs;
 mod connectors;
 mod models;
 mod router;

@@ -1,6 +1,6 @@
-use crate::connectors::{self, NameAvailableRouter};
-use crate::connectors::{Chain, ChainNameService};
+use crate::configs::{self, Chain, ChainNameService};
 use crate::models::{NameAvailableRequest, NameAvailableResponse};
+use crate::router::NameAvailableRouter;
 use crate::router::Router;
 use actix_web::{get, web, HttpResponse, Responder};
 use futures::future::join_all;
@@ -48,7 +48,7 @@ async fn nameservice_name_avaiable_handler(
             chain: c.clone(),
             name: name.clone(),
         };
-        NameAvailableRouter::route_operation(connectors::Operation::NameAvailable, c.clone(), req)
+        NameAvailableRouter::route_operation(configs::Operation::NameAvailable, c.clone(), req)
     }))
     .await;
     HttpResponse::Ok().json(responses)

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::connectors::Chain;
+use crate::configs::Chain;
 
 #[derive(Serialize)]
 pub struct GenericResponse<T> {
