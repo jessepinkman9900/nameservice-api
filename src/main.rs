@@ -1,5 +1,6 @@
 mod connectors;
 mod models;
+mod router;
 mod routes;
 
 use crate::routes::nameservice_name_avaiable_handler;
